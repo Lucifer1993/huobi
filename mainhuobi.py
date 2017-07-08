@@ -18,10 +18,6 @@ sys.setdefaultencoding('utf-8')
 
 
 if __name__ == "__main__":
-    '''
-    @查询资产详情
-    @无参数
-    '''
     if sys.argv[1] == "-v":
         accountdic = dict(HuobiService.getAccountInfo(ACCOUNT_INFO))
         cprint("[*] 可用比特币: "+accountdic['available_btc_display'], "green")
@@ -35,10 +31,6 @@ if __name__ == "__main__":
         cprint("[*] 冻结莱特币: "+accountdic['frozen_ltc_display'], "red")
         cprint("[*] 资产总值: "+accountdic['total'], "white")
 
-    '''
-    @查询历史订单,最多十条
-    @参数：ltc,btc
-    '''
     elif sys.argv[1] == "-o":
         if sys.argv[2] == "btc":
             cprint("[*] 查询比特币历史订单: ", "cyan")
@@ -77,6 +69,7 @@ if __name__ == "__main__":
                 print "---------------------------------------"
                 print
                 print
+
         if sys.argv[2] == "ltc":
             cprint("[*] 查询莱特币历史订单: ", "cyan")
             count = 0
@@ -115,10 +108,7 @@ if __name__ == "__main__":
                 print "---------------------------------------"
                 print
                 print
-    '''
-    @查询正在进行的委托
-    @参数：ltc,btc
-    '''
+
     elif sys.argv[1] == "-e":
         if sys.argv[2] == "ltc":
             cprint("[*] 正在进行的莱特币委托: ", "cyan")
@@ -166,11 +156,7 @@ if __name__ == "__main__":
                 print "---------------------------------------"
                 print
                 print
-    '''
-    @取消正在进行的委托
-    @参数1：ltc,btc
-    @参数2：委托id
-    '''
+
     elif sys.argv[1] == "-c":
         if sys.argv[2] == "btc":
             results = HuobiService.cancelOrder(1,sys.argv[3].strip(),CANCEL_ORDER)
@@ -188,13 +174,7 @@ if __name__ == "__main__":
                 cprint("[+] 莱特币委托取消成功", "green")
             else:
                 pass
-    '''
-    @限价交易
-    @参数1：ltc,btc
-    @参数2：-b买入  -s卖出
-    @参数3：买入卖出价格
-    @参数4：买入卖出数量
-    '''
+
     elif sys.argv[1] == "-l":
         if sys.argv[2] == "btc":
             if sys.argv[3] == "-b":
@@ -224,12 +204,7 @@ if __name__ == "__main__":
                     cprint("[!] 现价卖出莱特币失败,"+limitprice['msg'], "red")
                 if limitprice.has_key('result') and limitprice['result'] == "success":
                     cprint("[+] 现价卖出莱特币成功,委托id: " + str(limitprice['id']), "green")
-    '''
-    @市价交易
-    @参数1：ltc,btc
-    @参数2：-b买入  -s卖出
-    @参数3：买入卖出数量
-    '''
+
     elif sys.argv[1] == "-m":
         if sys.argv[2] == "btc":
             if sys.argv[3] == "-b":
@@ -262,5 +237,4 @@ if __name__ == "__main__":
                     cprint("[+] 市价卖出莱特币成功,委托id: " + str(marketprice['id']), "green")
     else:
         pass
-
 
