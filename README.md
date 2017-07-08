@@ -11,7 +11,7 @@ python2.7
 termcolor
 
 # 使用说明
-1.首先在火币网申请API KEY，编辑Utils.py将API KEY依次填入.
+1.首先在火币网申请API KEY，编辑Util.py将API KEY依次填入.
 
 2.查看资产详情
  eg. python mainhuobi.py -v
